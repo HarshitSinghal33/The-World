@@ -40,7 +40,7 @@ export default function Country() {
     return (
         <div className={`${darkMode ? 'dark' : ''}`}>
             <header className='flex justify-between p-3 shadow-light items-center text-2xl dark:text-white dark:shadow-dark'>
-                <Link to={'/'} ><MdDoubleArrow size={42} className='rotate-180'/></Link>
+                <Link to={'/the-world/'} ><MdDoubleArrow size={42} className='rotate-180'/></Link>
                 <DarkMode/>
             </header>
             {renderComponent()}
