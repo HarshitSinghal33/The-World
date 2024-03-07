@@ -11,7 +11,7 @@ export default function useFilteredCountries() {
       return
     }
     const filtered = countries.filter((country) => {
-      return ((continent === 'All' || country.continents.includes(continent)) && (!search || country.name.common.toLowerCase().includes(search.trim())))
+      return ((continent === 'All' || country.continents.includes(continent)) && (country.name.common.toLowerCase().includes(search.toLowerCase().trim())))
     });
     setFilteredCountries(filtered);
   }, [countries, search, continent]);
