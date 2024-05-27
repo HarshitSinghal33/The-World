@@ -27,26 +27,24 @@ export default function Countries() {
     }
 
     useEffect(() => {
-        if (!countries?.length && !error) {
-            const getMode: string | null = localStorage.getItem('darkMode')
-            setDarkMode(getMode === 'true');
-            
-            const fetch = async () => {
-                const data = await fetchData(ALL_COUNTRIES_URL);
+        const initialize = async () => {
+            if (!countries?.length && !error) {
+                const getMode = localStorage.getItem('darkMode');
+                setDarkMode(getMode === 'true');
 
+                const data = await fetchData(ALL_COUNTRIES_URL);
                 if (data) {
                     data.sort((a, b) => {
                         if (a.name.common < b.name.common) return -1;
                         if (a.name.common > b.name.common) return 1;
-                        return 0
-                    })
+                        return 0;
+                    });
+                    setCountries(data);
                 }
-
-                setCountries(data);
             }
-            fetch()
-        }
-    }, [])
+        };
+        initialize();
+    }, []);
 
     useEffect(() => {
         handleCurrentPage()
@@ -61,7 +59,7 @@ export default function Countries() {
             {countries &&
                 <>
                     <div className='mt-6 flex w-full gap-y-6 gap-x-3 flex-wrap justify-evenly px-1'>
-                        {shownCountries.length !== 0 && shownCountries.map((country : CountryDetails) => (
+                        {shownCountries.length !== 0 && shownCountries.map((country: CountryDetails) => (
                             <CountriesCard country={country} key={country.cca2} />
                         ))}
                     </div>

@@ -2,7 +2,7 @@
   "name": "the-world",
   "homepage": "https://harshitsinghal33.github.io/the-world/",
   "private": true,
-  "version": "0.0.0",
+  "version": "2.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",

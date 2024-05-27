@@ -10,13 +10,13 @@ export default function useFetchData(): FetchDataResult {
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const fetchData = async (URL : string): Promise<CountryDetails[] | undefined> => {
+        setIsLoading(true)
         try {
             const response = await fetch(URL);
             if (!response.ok) {
-                throw new Error(response.status.toString())
+                throw new Error(response.status.toString());
             }
             const data : CountryDetails[] = await response.json();
-            
             return data
         } catch (error: any) {
             setError(error.message);
