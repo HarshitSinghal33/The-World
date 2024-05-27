@@ -1,4 +1,4 @@
-function styleBorder(darkMode) {
+function styleBorder(darkMode: boolean) {
     return {
         "& .MuiOutlinedInput-notchedOutline": {
             borderColor: `${darkMode ? 'white' : 'black'}`
@@ -18,7 +18,7 @@ function styleBorder(darkMode) {
     }
 }
 
-function labelStyles(darkMode) {
+function labelStyles(darkMode: boolean) {
     return {
         "& .MuiInputLabel-outlined": {
             color: `${darkMode ? 'white' : 'black'}`,
@@ -30,7 +30,7 @@ function labelStyles(darkMode) {
     }
 }
 
-export function textFieldStyles(darkMode) {
+export function textFieldStyles(darkMode: boolean) {
     return {
         "& .MuiOutlinedInput-root": {
             color: `${darkMode ? 'white' : 'black'}`,
@@ -41,7 +41,7 @@ export function textFieldStyles(darkMode) {
     }
 }
 
-export function selectFieldStyles(darkMode) {
+export function selectFieldStyles(darkMode: boolean) {
     return {
         "& .MuiSvgIcon-root": {
             color: `${darkMode ? 'white' : 'black'}`,

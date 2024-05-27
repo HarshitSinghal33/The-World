@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useAppContext } from '../Context/Context'
 
-export default function PaginationButton({ totalPages }) {
+export default function PaginationButton({ totalPages }: { totalPages: number }) {
     const { currentPage, setCurrentPage, darkMode } = useAppContext()
-    const [index, setIndex] = useState({firstIndex: 0, lastIndex: 3 })
+    const [index, setIndex] = useState({ firstIndex: 0, lastIndex: 3 })
 
     // if user click on a country and get back to home page than set the currentPage to the previous one (means back on the same page)
     useEffect(() => {
@@ -20,13 +20,13 @@ export default function PaginationButton({ totalPages }) {
         }
     }, [totalPages])
 
-    const handleClickPageChange = (page) => {
+    const handleClickPageChange = (page: number) => {
         setCurrentPage(page)
     }
 
     const handlePrev = () => {
         const newPage = currentPage - 1
-        if (newPage < index.firstIndex +1) {
+        if (newPage < index.firstIndex + 1) {
             handlePrevDots(newPage)
             return
         }
@@ -43,10 +43,10 @@ export default function PaginationButton({ totalPages }) {
     }
 
 
-    const handlePrevDots = (page) => {
+    const handlePrevDots = (page?: number) => {
         const newFirstIndex = index.firstIndex - 3;
-        setIndex({firstIndex: newFirstIndex,lastIndex: newFirstIndex + 3  })
-        setCurrentPage(page || newFirstIndex +  1);
+        setIndex({ firstIndex: newFirstIndex, lastIndex: newFirstIndex + 3 })
+        setCurrentPage(page || newFirstIndex + 1);
     }
     const handleNextDots = () => {
         const newFirstIndex = index.firstIndex + 3;
@@ -58,13 +58,13 @@ export default function PaginationButton({ totalPages }) {
             {<div className={`${darkMode ? 'dark' : ''} flex gap-3 justify-center mt-12 mb-9`}>
                 {currentPage > 1 && <div className='cursor-pointer border border-solid border-black px-2 py-1 dark:border-white dark:text-white' onClick={handlePrev}>prev</div>}
                 {currentPage > 3 && <div className='cursor-pointer border border-solid border-black px-2 py-1 dark:border-white dark:text-white' onClick={() => handlePrevDots()}>...</div>}
-                {Array.from({length : totalPages},(_,i) => i + 1).slice(index.firstIndex,index.lastIndex).map(page => (
-                    <div key={page} onClick={() => handleClickPageChange(page)} 
-                    className={`
+                {Array.from({ length: totalPages }, (_, i) => i + 1).slice(index.firstIndex, index.lastIndex).map(page => (
+                    <div key={page} onClick={() => handleClickPageChange(page)}
+                        className={`
                     ${currentPage === page ? 'bg-black text-white dark:text-black dark:bg-white' : 'dark:text-white'} 
                     border border-solid border-black px-2 py-1 cursor-pointer dark:border-white `}>{page}</div>
                 ))}
-                {Math.ceil(currentPage/3) < Math.ceil(totalPages/3) && <div className='cursor-pointer border border-solid border-black px-2 py-1 dark:border-white dark:text-white' onClick={handleNextDots}>...</div>}
+                {Math.ceil(currentPage / 3) < Math.ceil(totalPages / 3) && <div className='cursor-pointer border border-solid border-black px-2 py-1 dark:border-white dark:text-white' onClick={handleNextDots}>...</div>}
                 {currentPage < totalPages && <div className='cursor-pointer border border-solid border-black px-2 py-1 dark:border-white dark:text-white' onClick={handleNext}>next</div>}
             </div>}
         </>

@@ -1,8 +1,7 @@
-import React from 'react'
 import DarkMode from './Darkmode'
-import { useAppContext } from '../Context/Context'
-import Search from './Search'
-import ContinentDropdown from './ContinentDropdown'
+import { useAppContext } from '../../Context/Context'
+import Search from '../filters/Search'
+import ContinentDropdown from '../filters/ContinentDropdown'
 
 export default function Header() {
   const { darkMode } = useAppContext()

@@ -1,7 +1,7 @@
-import Countries from './Pages/Countries'
 import { AppContextProvider } from './Context/Context'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Country from './Pages/Country'
+import Countries from './Pages/Countries'
 
 function App() {
   return (

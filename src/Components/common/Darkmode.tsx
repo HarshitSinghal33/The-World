@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { BsLightbulb, BsLightbulbFill } from "react-icons/bs";
-import { useAppContext } from '../Context/Context';
+import { useAppContext } from '../../Context/Context';
+
 export default function DarkMode() {
   const { darkMode, setDarkMode } = useAppContext()
   useEffect(() => {
@@ -10,13 +11,13 @@ export default function DarkMode() {
   const handleMode = () => {
     setDarkMode(prev => {
       const newMode = !prev
-      localStorage.setItem('darkMode', newMode)
+      localStorage.setItem('darkMode', JSON.stringify(newMode))
       return newMode
     })
   }
 
   return (
-    <div onClick={() => handleMode()} className='text-2xl border border-solid  rounded-lg p-3 cursor-pointer bg-black text-white'>
+    <div onClick={handleMode} className='text-2xl border border-solid  rounded-lg p-3 cursor-pointer bg-black text-white'>
       {darkMode ? <BsLightbulb /> : <BsLightbulbFill />}
     </div>
   )
